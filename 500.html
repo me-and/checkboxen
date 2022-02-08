@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en-gb">
+<head>
+	<meta charset="utf-8">
+	<title>Checkbox counter</title>
+	<meta name="author" content="Adam Dinwoodie">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		function updateCount () {
+			let boxen = document.getElementById('boxen');
+			let count = 0;
+			for (let n=0; n<boxen.children.length; n++) {
+				boxen.children[n].checked && count++;
+			}
+			document.getElementById('count').innerText = count;
+		}
+		window.onload = function () {
+			let count = document.getElementById('count');
+			let boxen = document.getElementById('boxen');
+			let num = window.location.pathname.split('/').pop().split('.')[0];
+			for (let n=0; n<num; n++) {
+				let cb = document.createElement('input');
+				cb.type = 'checkbox';
+				cb.onchange = updateCount;
+				boxen.appendChild(cb);
+			}
+		}
+	</script>
+</head>
+<body>
+	<p id="count">0
+	<p id="boxen">
+</body>
+</html>
